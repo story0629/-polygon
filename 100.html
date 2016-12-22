@@ -8,10 +8,11 @@
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
         .container {
             position: relative;
-            perspective: 1000px;
+            perspective: 10000px;
             margin: auto;
 /*            margin-top: 200px;*/
         }
@@ -21,7 +22,7 @@
             position: absolute;
             transform-style: preserve-3d;
             animation: rotate 10s infinite linear;
-            transform: rotateY(180deg);
+/*            transform: rotateY(180deg);*/
             
         }
         .plane {
@@ -42,10 +43,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script>
         $(function(){
-//            var w = $(window).width();
-//            var h = $(window).height();
-            var w = 200;
-            var h = 200;
+            var w = $(window).width();
+            var h = $(window).height();
+//            var w = 200;
+//            var h = 200;
             var pol = 6;
             var angle = (90-(360/pol/2))*Math.PI/180;
             var circle = Math.tan(angle);
@@ -53,7 +54,7 @@
             var rotate = 360/pol;
             $(".container").css("width",w);
             $(".container").css("height",h);
-            if (w=200){
+            if (w==200){
                 $(".container").css("marginTop",200)
             };
             //方法1.css("transform",寫好寫滿)
@@ -61,11 +62,13 @@
             for(var i=0;i<pol;i++){
                 var j = i+1;
                 //寫法1.front不往前推
-                $(".plane:nth-of-type("+j+")").css("transform","translateZ(-"+push+"px)rotateY("+i*rotate+"deg)translateZ("+push+"px)")
-                $(".plane:nth-of-type("+j+")").css("-webkit-transform","translateZ(-"+push+"px)rotateY("+i*rotate+"deg)translateZ("+push+"px)")
-                $(".plane:nth-of-type("+j+")").css("-moz-transform","translateZ(-"+push+"px)rotateY("+i*rotate+"deg)translateZ("+push+"px)")
+//                $(".plane:nth-of-type("+j+")").css("transform","translateZ(-"+push+"px)rotateY("+i*rotate+"deg)translateZ("+push+"px)")
+//                $(".plane:nth-of-type("+j+")").css("-webkit-transform","translateZ(-"+push+"px)rotateY("+i*rotate+"deg)translateZ("+push+"px)")
+//                $(".plane:nth-of-type("+j+")").css("-moz-transform","translateZ(-"+push+"px)rotateY("+i*rotate+"deg)translateZ("+push+"px)")
                 //寫法2.front往前推
-//                $(".plane:nth-of-type("+j+")").css("transform","rotateY("+i*rotate+"deg)translateZ("+push+"px)");
+                $(".plane:nth-of-type("+j+")").css("-webkit-transform","rotateY("+i*rotate+"deg)translateZ("+push+"px)");
+                $(".plane:nth-of-type("+j+")").css("-moz-transform","rotateY("+i*rotate+"deg)translateZ("+push+"px)");
+                $(".plane:nth-of-type("+j+")").css("transform","rotateY("+i*rotate+"deg)translateZ("+push+"px)");
             };
         });
     </script>
@@ -80,6 +83,7 @@
             <div class="plane"></div>
             <div class="plane"></div>
         </div>
+        <div class="rotate"><a href="" class="left"></a><a href="" class="right"></a></div>
     </div>
 </body>
-</html>
+<!--</html>-->
